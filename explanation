@@ -1,0 +1,15 @@
+So, while running the dp.c code without any synchronization,
+I noticed that multiple philosophers attempted to pick up
+chopsticks simultaneously, causing race condtions. This led
+to situations where the philosophers could potentially deadlock,
+holding one chopstick each and waiting for the second. Some
+philosophers also experienced starvation as others repeatedly
+ate.
+--------------------------------------------------------------------
+After I saw the problem, I went to the other code "dp_synch.c"
+and implemented synchronization, now the output showed that
+only non-adjacent philosophers ate simultaneously, preventing
+any deadlock or starvation. Using mutex locks and condition
+variables the synchronization became sucessful, alowing fair
+acess to chopticks and orderly transitions between eating and
+thinking.
