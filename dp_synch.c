@@ -19,7 +19,11 @@ void eat(int i) {
 
 void test(int i) {
 	//Please implement here
+    if (state[i] == HUNGRY && state[(i + 4) % NUM_PHIL] != EATING && state[(i + 1) % NUM_PHIL] != EATING) {
+        state[i] = EATING;
+        printf("Philosopher %d picked up chopsticks and is eating.\n", i);
         pthread_cond_signal(&condition[i]);
+    }
 }
 
 void pickup(int i) {
