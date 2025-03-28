@@ -40,7 +40,14 @@ void pickup(int i) {
 
 void putdown(int i) {
 	//Please implement here
+    pthread_mutex_lock(&mutex);
+    state[i] = THINKING;
+    printf("Philosopher %d put down chopsticks and is thinking...\n", i);
+    test((i + 4) % NUM_PHIL);
+    test((i + 1) % NUM_PHIL);
+    pthread_mutex_unlock(&mutex);
 }
+
 
 
 
