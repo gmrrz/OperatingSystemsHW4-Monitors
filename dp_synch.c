@@ -28,7 +28,14 @@ void test(int i) {
 
 void pickup(int i) {
 	//Please implement here
-    	pthread_cond_wait(&condition[i], &mutex);
+    pthread_mutex_lock(&mutex);
+    state[i] = HUNGRY;
+    printf("Philosopher %d is hungry and tries to pick chopsticks...\n", i);
+    test(i);
+    if (state[i] != EATING) {
+        pthread_cond_wait(&condition[i], &mutex);
+    }
+    pthread_mutex_unlock(&mutex);
 }
 
 void putdown(int i) {
